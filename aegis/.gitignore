@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# AEGIS video pipeline artifacts (regenerate with npm run video)
+/tools/
+/docs/video/

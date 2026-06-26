@@ -8,6 +8,8 @@
 
 *Runs 100% locally — no API keys, no accounts, no data ever leaves the machine.*
 
+**▶ [Watch the demo video](aegis/docs/video/AEGIS-demo.mp4)**
+
 </div>
 
 ---
@@ -88,6 +90,19 @@ npm run dev      # http://localhost:5173
 ```
 
 Build for production: `npm run build`.
+
+## Demo video — produced entirely by code
+
+The demo video was generated end-to-end with zero manual editing:
+
+```bash
+cd aegis
+npm run video    # Edge-TTS narration -> Playwright screen recording -> ffmpeg mux -> MP4
+```
+
+`narrate` synthesizes per-scene narration with Edge neural voices (no key), `record`
+drives the live app on a timeline with Playwright and screen-records it, and `mux`
+lays the narration over the video with ffmpeg. Output: `docs/video/AEGIS-demo.mp4`.
 
 ## Business value for Microsoft
 

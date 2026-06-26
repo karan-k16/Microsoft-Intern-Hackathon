@@ -9,7 +9,11 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "selftest": "esbuild scripts/selftest.ts --bundle --platform=node --format=esm --external:@huggingface/transformers | node --input-type=module -",
-    "shots": "node scripts/shots.mjs"
+    "shots": "node scripts/shots.mjs",
+    "narrate": "node scripts/narrate.mjs",
+    "record": "node scripts/record.mjs",
+    "mux": "node scripts/mux.mjs",
+    "video": "node scripts/narrate.mjs && node scripts/record.mjs && node scripts/mux.mjs"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.2.0",
@@ -25,6 +29,8 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
     "esbuild": "^0.28.1",
+    "msedge-tts": "^2.0.6",
+    "music-metadata": "^11.13.0",
     "oxlint": "^1.69.0",
     "playwright": "^1.61.1",
     "tailwindcss": "^4.3.1",
