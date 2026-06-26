@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useAegis } from "../../store/useAegis";
 import { TONE } from "../format";
 import type { Tone } from "../format";
@@ -30,8 +31,16 @@ function Gate({ icon, name, state }: { icon: string; name: string; state: GS }) 
 
 function Connector({ on }: { on: boolean }) {
   return (
-    <div className="relative mx-0.5 h-px w-5 self-center bg-edge">
-      {on && <div className="absolute inset-0 bg-scan/70" />}
+    <div className="relative mx-0.5 h-px w-5 self-center overflow-hidden bg-edge">
+      {on && (
+        <motion.div
+          className="absolute inset-y-0 w-3"
+          style={{ background: "linear-gradient(90deg, transparent, #4d8dff, transparent)" }}
+          initial={{ x: "-120%" }}
+          animate={{ x: "260%" }}
+          transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
+        />
+      )}
     </div>
   );
 }

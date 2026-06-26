@@ -51,7 +51,12 @@ export function VerdictPanel() {
         <motion.div
           key={decision + phase}
           initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={
+            decision === "block"
+              ? { opacity: 1, scale: 1, x: [0, -7, 7, -4, 2, 0] }
+              : { opacity: 1, scale: 1 }
+          }
+          transition={{ duration: 0.4 }}
           className={`mt-3 rounded-2xl border ${t.border} ${t.bg} ${t.glow} p-4`}
         >
           <div className="flex items-center justify-between">

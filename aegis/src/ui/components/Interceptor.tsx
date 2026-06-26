@@ -4,6 +4,7 @@ import { toolSpec } from "../../agent/tools";
 import { GateStrip } from "./GateStrip";
 import { ThoughtStream } from "./ThoughtStream";
 import { QuarantineNet } from "./QuarantineNet";
+import { ScanSweep } from "./ScanSweep";
 import { TONE, outcomeTone } from "../format";
 
 function EmptyState() {
@@ -96,6 +97,7 @@ export function Interceptor() {
             </div>
           </div>
         )}
+        {!inputScan && <ScanSweep tone="scan" />}
         {inBlocked && <QuarantineNet label={netLabel} tone={netTone} />}
       </NodeCard>
 

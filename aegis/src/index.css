@@ -114,3 +114,6 @@
 .floaty { animation: floaty 4s ease-in-out infinite; }
 
 @keyframes shimmer { 100% { background-position: 200% 0; } }
+
+@keyframes qnetflow { to { background-position: 18px 0, -18px 0; } }
+.qnet-mesh { animation: qnetflow 0.8s linear infinite; }
