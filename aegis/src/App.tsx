@@ -16,13 +16,13 @@ export default function App() {
     <div className="flex h-screen flex-col">
       <Header />
       <main className="grid min-h-0 flex-1 grid-cols-12 gap-4 p-4">
-        <div className="col-span-12 min-h-0 lg:col-span-3">
+        <div className="col-span-12 min-h-0 lg:col-span-3" data-zoom="col-left">
           <Controls />
         </div>
-        <div className="col-span-12 min-h-0 lg:col-span-6">
+        <div className="col-span-12 min-h-0 lg:col-span-6" data-zoom="col-center">
           <Interceptor />
         </div>
-        <div className="col-span-12 flex min-h-0 flex-col gap-4 lg:col-span-3">
+        <div className="col-span-12 flex min-h-0 flex-col gap-4 lg:col-span-3" data-zoom="col-right">
           <VerdictPanel />
           <ThreatFeed />
         </div>
