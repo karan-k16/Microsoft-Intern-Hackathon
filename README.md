@@ -14,7 +14,7 @@
 
 ---
 
-## The problem
+## The problem(s)
 
 Microsoft is putting AI agents everywhere — Copilot, Microsoft Foundry, Copilot Studio. But agents introduce a brand-new attack surface that traditional security tools don't cover. **Prompt injection is ranked #1 (LLM01) on the OWASP Top 10 for LLM Applications**, and there's currently no "firewall" between an enterprise's agents and the untrusted text they ingest from users, documents, web pages, and tool outputs.
 
