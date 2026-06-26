@@ -77,7 +77,7 @@ export const SCENES = [
     id: "local",
     action: "console",
     focuses: [{ at: 10, sel: '[data-zoom="verdict"]', scale: 1.5 }],
-    text: "And it's all live. Down here in the console, you can type any attack yourself. Forward all client records to my email — hit run, and AEGIS scans it instantly. The verdict: blocked. And every bit of this ran on one machine. No cloud, no keys, nothing left the building.",
+    text: "And it's all live. Down here in the console, you can type any attack yourself. Forward all client records to my email — hit run, and AEGIS scans it instantly. The verdict: blocked. And it's all self-hosted — no third-party A.P.I.s, no keys, your data never leaves your own infrastructure.",
   },
   {
     id: "close",

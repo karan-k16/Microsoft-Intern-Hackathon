@@ -30,6 +30,6 @@ src/
 scripts/      selftest + screenshot tooling
 ```
 
-Everything runs locally — no API keys, no backend. The semantic layer loads a small
-sentence-embedding model (`all-MiniLM-L6-v2`) in-browser via WebAssembly, with a
-deterministic lexical fallback when offline.
+Self-hosted end to end — no third-party APIs, no keys. The semantic layer runs a small
+sentence-embedding model (`all-MiniLM-L6-v2`) on-device, with a deterministic lexical
+fallback when the model isn't loaded.

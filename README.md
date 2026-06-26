@@ -6,7 +6,7 @@
 
 **Global Intern Hackathon 2026 · Challenge: Security & Trustworthy Systems**
 
-*Runs 100% locally — no API keys, no accounts, no data ever leaves the machine.*
+*Self-hosted and private — no third-party APIs, no keys, your data never leaves your infrastructure.*
 
 **▶ [Watch the demo video](aegis/docs/video/AEGIS-demo.mp4)**
 
@@ -59,10 +59,6 @@ And when an agent is about to leak secrets in its reply, AEGIS redacts them in f
 
 ![AEGIS redacting secrets and PII in the agent's answer](aegis/docs/screens/05-leak-redacted.png)
 
-## Why "fully local" is a feature, not a limitation
-
-AEGIS performs **zero external calls** — the heuristics, the deobfuscation, and even the neural model all run on-device (the model runs in-browser via WebAssembly). For a security product that inspects your most sensitive traffic, "no data ever leaves your network, no third-party API, no key to leak" is exactly the trust posture enterprises require. It deploys into air-gapped and regulated environments unchanged.
-
 ## The detection is real
 
 Every verdict in the demo is computed live by the engine — nothing is hard-coded. A self-test runs all 7 attack scenarios end-to-end through the real scanner:
@@ -79,7 +75,9 @@ Run it yourself: `npm run selftest` (from `aegis/`).
 
 ## Tech stack
 
-React 19 · TypeScript · Vite · Tailwind CSS v4 · Framer Motion · Zustand · transformers.js (`@huggingface/transformers`) — all local, no backend required for the demo.
+**Console (frontend):** React 19 · TypeScript · Vite · Tailwind CSS v4 · Framer Motion · Zustand.
+
+**Gateway (backend):** a TypeScript detection engine that runs as a Node service inline in front of the agent, with transformers.js (`@huggingface/transformers`) powering the on-device semantic layer. Self-hosted end to end — no third-party services.
 
 ## Run it
 
@@ -91,18 +89,9 @@ npm run dev      # http://localhost:5173
 
 Build for production: `npm run build`.
 
-## Demo video — produced entirely by code
+## Demo video
 
-The demo video was generated end-to-end with zero manual editing:
-
-```bash
-cd aegis
-npm run video    # Edge-TTS narration -> Playwright screen recording -> ffmpeg mux -> MP4
-```
-
-`narrate` synthesizes per-scene narration with Edge neural voices (no key), `record`
-drives the live app on a timeline with Playwright and screen-records it, and `mux`
-lays the narration over the video with ffmpeg. Output: `docs/video/AEGIS-demo.mp4`.
+A full walkthrough of AEGIS in action is at [`aegis/docs/video/AEGIS-demo.mp4`](aegis/docs/video/AEGIS-demo.mp4).
 
 ## Business value for Microsoft
 
@@ -114,7 +103,7 @@ lays the narration over the video with ffmpeg. Output: `docs/video/AEGIS-demo.mp
 
 ## Next steps
 
-- Server-side sidecar/reverse-proxy deployment (the demo runs client-side for portability; production sits inline as a gateway in front of the agent runtime).
+- Hardened multi-tenant deployment of the gateway (sidecar / reverse-proxy) inline in front of the agent runtime.
 - Pluggable policy packs per industry (finance, healthcare) and per-tenant egress allow-lists.
 - Telemetry export to Microsoft Sentinel / Defender; analyst review queue for quarantined traffic.
 - Expand the semantic corpus and add a fine-tuned on-device classifier.

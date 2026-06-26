@@ -25,7 +25,17 @@ t.scenes.forEach((sc, k) => {
   filters.push(`[${k + 1}]adelay=${d}:all=1[a${k}]`);
   labels.push(`[a${k}]`);
 });
+const FPS = process.env.AEGIS_FPS || "60";
+// Motion-compensated interpolation: turns the 25fps capture into smooth 60fps.
+// Disable with AEGIS_SMOOTH=0 for a fast (choppy) render.
+const SMOOTH = process.env.AEGIS_SMOOTH !== "0";
+const vfilter = SMOOTH
+  ? `[0:v]minterpolate=fps=${FPS}:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1[v]`
+  : `[0:v]fps=${FPS}[v]`;
+
 const fc =
+  vfilter +
+  ";" +
   filters.join(";") +
   ";" +
   labels.join("") +
@@ -35,17 +45,20 @@ const args = [
   "-y",
   ...inputs,
   "-filter_complex", fc,
-  "-map", "0:v",
+  "-map", "[v]",
   "-map", "[narr]",
+  "-r", FPS,
+  "-fps_mode", "cfr",
   "-c:v", "libx264",
   "-pix_fmt", "yuv420p",
   "-crf", "20",
   "-preset", "veryfast",
+  "-movflags", "+faststart",
   "-c:a", "aac",
   "-b:a", "192k",
   OUT,
 ];
 
-console.log("ffmpeg:", ff);
+console.log(`ffmpeg: ${ff}  (smooth=${SMOOTH}, fps=${FPS})`);
 execFileSync(ff, args, { stdio: "inherit" });
 console.log("\n✅ final video:", OUT);
