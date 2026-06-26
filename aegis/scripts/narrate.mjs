@@ -3,7 +3,7 @@ import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
 import { parseFile } from "music-metadata";
 import { writeFileSync, mkdirSync, createWriteStream } from "node:fs";
 import { pipeline } from "node:stream/promises";
-import { SCENES, VOICE } from "./scenes.mjs";
+import { SCENES, VOICE, RATE } from "./scenes.mjs";
 
 const GAP = 0.55; // seconds of breathing room between scenes
 mkdirSync("docs/video/seg", { recursive: true });
@@ -16,7 +16,7 @@ for (let i = 0; i < SCENES.length; i++) {
   const tts = new MsEdgeTTS();
   await tts.setMetadata(VOICE, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
   const file = `docs/video/seg/${String(i).padStart(2, "0")}_${s.id}.mp3`;
-  const { audioStream } = tts.toStream(s.text, { rate: "+6%" });
+  const { audioStream } = tts.toStream(s.text, { rate: RATE });
   await pipeline(audioStream, createWriteStream(file));
 
   const dur = (await parseFile(file)).format.duration ?? 0;

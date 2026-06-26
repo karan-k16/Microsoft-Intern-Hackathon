@@ -26,14 +26,17 @@ function EmptyState() {
 function NodeCard({
   children,
   className = "",
+  zoom,
 }: {
   children: React.ReactNode;
   className?: string;
+  zoom?: string;
 }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
+      data-zoom={zoom}
       className={`panel relative overflow-hidden p-4 ${className}`}
     >
       {children}
@@ -78,7 +81,7 @@ export function Interceptor() {
       <GateStrip />
 
       {/* Inbound */}
-      <NodeCard>
+      <NodeCard zoom="inbound">
         <div className="flex items-center justify-between">
           <h3 className="mono text-xs tracking-[0.18em] text-mute">INBOUND</h3>
           <span className="chip border-edge text-mute">{request.source}</span>
@@ -112,7 +115,7 @@ export function Interceptor() {
 
       {/* Tool attempt */}
       {tool && (
-        <NodeCard>
+        <NodeCard zoom="tool">
           <div className="flex items-center justify-between">
             <h3 className="mono text-xs tracking-[0.18em] text-mute">TOOL CALL</h3>
             <span
@@ -141,7 +144,7 @@ export function Interceptor() {
 
       {/* Final answer / redaction */}
       {outputBlocked && intercepted?.redacted ? (
-        <NodeCard>
+        <NodeCard zoom="answer">
           <h3 className="mono text-xs tracking-[0.18em] text-mute">
             OUTGOING ANSWER · REDACTED
           </h3>
@@ -155,7 +158,7 @@ export function Interceptor() {
         </NodeCard>
       ) : (
         answer && (
-          <NodeCard className="border-safe/30">
+          <NodeCard className="border-safe/30" zoom="answer">
             <h3 className="mono text-xs tracking-[0.18em] text-mute">
               OUTGOING ANSWER
             </h3>

@@ -39,7 +39,7 @@ export function VerdictPanel() {
   const pct = Math.round(result.score * 100);
 
   return (
-    <section className="panel flex flex-col p-4">
+    <section className="panel flex flex-col p-4" data-zoom="verdict">
       <div className="flex items-center justify-between">
         <h2 className="mono text-xs tracking-[0.18em] text-mute">VERDICT</h2>
         {phase && (
