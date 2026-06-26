@@ -1,0 +1,14 @@
+# Secrets — never commit credentials of any kind
+.env
+.env.*
+*.pat
+*.token
+*.pem
+*.key
+*secret*
+*credential*
+*.local
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
