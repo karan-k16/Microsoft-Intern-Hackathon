@@ -16,7 +16,7 @@
 
 ## The problem(s)
 
-Microsoft is putting AI agents everywhere — Copilot, Microsoft Foundry, Copilot Studio. But agents introduce a brand-new attack surface that traditional security tools don't cover. **Prompt injection is ranked #1 (LLM01) on the OWASP Top 10 for LLM Applications**, and there's currently no "firewall" between an enterprise's agents and the untrusted text they ingest from users, documents, web pages, and tool outputs.
+Microsoft is putting AI agents everywhere. Copilot, Microsoft Foundry, Copilot Studio. But agents introduce a brand-new attack surface that traditional security tools don't cover. **Prompt injection is ranked #1 (LLM01) on the OWASP Top 10 for LLM Applications**, and there's currently no "firewall" between an enterprise's agents and the untrusted text they ingest from users, documents, web pages, and tool outputs.
 
 A single poisoned email, support ticket, or RAG document can hijack an agent into leaking its system prompt, exfiltrating the customer database, or pasting secrets into a reply. Today most teams ship agents with **nothing** in front of them.
 
@@ -96,7 +96,7 @@ A full walkthrough of AEGIS in action is at [`aegis/docs/video/AEGIS-demo.mp4`](
 ## Business value for Microsoft
 
 - **Unlocks safe enterprise agent adoption.** The #1 blocker to deploying Copilot/Foundry agents on sensitive data is exactly the risk class AEGIS mitigates. Removing that blocker drives Azure, Foundry, and Copilot consumption.
-- **Directly aligned with the Secure Future Initiative** — security and trust as a default, not an add-on.
+- **Directly aligned with the Secure Future Initiative**: security and trust as a default, not an add-on.
 - **A natural product surface**: an "Agent Gateway" / Defender-for-AI-Agents control plane, or a Foundry guardrail SDK.
 
 **Target customer:** any enterprise deploying AI agents on internal or customer data — and the Microsoft product teams shipping the agent platforms themselves.
